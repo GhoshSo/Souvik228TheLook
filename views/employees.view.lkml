@@ -39,6 +39,16 @@ view: employees {
     sql: ${TABLE}.Name ;;
   }
 
+  dimension: conditional_name {
+    type: string
+    sql: CASE
+          WHEN length(name) < 4 THEN ${name}
+          WHEN length(name) >3 THEN substring(${name},3)
+          ELSE
+           NULL
+          END ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [name]
