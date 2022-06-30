@@ -77,4 +77,22 @@ view: inventory_items {
     type: count
     drill_fields: [id, products.id, products.item_name, order_items.count]
   }
+
+  measure: mymeasure1 {
+    type: sum_distinct
+    sql: ${product_id} ;;
+    filters: [id: "6"]
+  }
+
+  measure: mymeasure2 {
+    type: count_distinct
+    sql: ${cost} ;;
+    filters: [id: "6"]
+  }
+
+  measure: mysum {
+    type:  number
+    sql: ${mymeasure1} + ${mymeasure2} ;;
+  }
+
 }
