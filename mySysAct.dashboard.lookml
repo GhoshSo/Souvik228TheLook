@@ -11,7 +11,6 @@
 #       type: looker_column
 
 
-
 - dashboard: content_activity
   title: Content Activity
   layout: newspaper
@@ -28,7 +27,7 @@
       query.view: "-NULL"
       history.created_date: 30 days
     sorts: [query.first_query_at]
-    limit: 1500
+    limit: 1400
     dynamic_fields: [{table_calculation: first_query_date, label: First Query Date,
         expression: "date(\n  to_number(substring(${query.first_query_at}, 0, 4)),\n\
           \  to_number(substring(${query.first_query_at}, 6, 2)),\n  to_number(substring(${query.first_query_at},\
