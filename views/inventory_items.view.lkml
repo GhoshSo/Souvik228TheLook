@@ -41,16 +41,20 @@ view: inventory_items {
 
   dimension_group: created {
     type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+    timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.created_at ;;
+  }
+
+  dimension_group: sold {
+    type: time
+    timeframes: [raw, time, date, week, month, quarter, year]
+    sql: ${TABLE}.sold_at ;;
+  }
+
+  dimension: date_diff {
+    type: number
+    sql: DATEDIFF(${sold_date}, ${created_date}) ;;
+
   }
 
   dimension: product_id {
@@ -59,19 +63,7 @@ view: inventory_items {
     sql: ${TABLE}.product_id ;;
   }
 
-  dimension_group: sold {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.sold_at ;;
-  }
+
 
   measure: count {
     type: count
